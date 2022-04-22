@@ -9,6 +9,18 @@ function App() {
   const whatsappShareLink = `https://wa.me/?text=${encodedUrl}`;
   const twitterShareLink = `http://twitter.com/share?text=${shareContent}&url=${encodedUrl}`;
 
+  function nativeShare() {
+    if (navigator.share) {
+       navigator.share({
+         title: 'LOL is fantastic',
+        text: 'LOL is awesome',
+        url: 'https://lol.garena.tw',
+      })
+    } else {
+      alert('api not available');
+    }
+  }
+
   return (
     <div className="App">
       <ul>
@@ -25,6 +37,7 @@ function App() {
           <a href={twitterShareLink} target="_blank">Twitter share</a>
         </li>
       </ul>
+      <button onClick={nativeShare}>nativeShare</button>
     </div>
   );
 }
